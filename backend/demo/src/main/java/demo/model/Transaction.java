@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
-@Entity   // 🔥 VERY IMPORTANT
+@Entity
 @Table(name = "transactions")
 public class Transaction {
 
@@ -10,41 +11,42 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-    private double amount;
-    private boolean flagged;
+    @NotNull(message = "Amount must not be null")
+    private Double amount;
 
-    // Getter & Setter
+    @NotBlank(message = "Type must not be blank")
+    private String type;
+
+    public Transaction() {
+    }
+
+    public Transaction(Long id, Double amount, String type) {
+        this.id = id;
+        this.amount = amount;
+        this.type = type;
+    }
 
     public Long getId() {
         return id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public boolean isFlagged() {
-        return flagged;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    public void setFlagged(boolean flagged) {
-        this.flagged = flagged;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
