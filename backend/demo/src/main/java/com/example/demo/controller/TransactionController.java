@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Transaction;
 import com.example.demo.service.TransactionService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,17 +12,37 @@ import java.util.List;
 public class TransactionController {
 
     @Autowired
-    private TransactionService service;
+    private TransactionService transactionService;
 
-    // ✅ GET all transactions
+    // ✅ GET ALL
     @GetMapping
-    public List<Transaction> getAll() {
-        return service.getAllTransactions();
+    public List<Transaction> getAllTransactions() {
+        return transactionService.getAllTransactions();
     }
 
-    // ✅ POST create transaction
+    // ✅ GET BY ID
+    @GetMapping("/{id}")
+    public Transaction getTransactionById(@PathVariable Long id) {
+        return transactionService.getTransactionById(id);
+    }
+
+    // ✅ CREATE
     @PostMapping
-    public Transaction create(@RequestBody Transaction txn) {
-        return service.processTransaction(txn);
+    public Transaction createTransaction(@RequestBody Transaction transaction) {
+        return transactionService.createTransaction(transaction);
+    }
+
+    // ✅ UPDATE
+    @PutMapping("/{id}")
+    public Transaction updateTransaction(@PathVariable Long id,
+                                         @RequestBody Transaction transaction) {
+        return transactionService.updateTransaction(id, transaction);
+    }
+
+    // ✅ DELETE
+    @DeleteMapping("/{id}")
+    public String deleteTransaction(@PathVariable Long id) {
+        transactionService.deleteTransaction(id);
+        return "Transaction deleted successfully";
     }
 }

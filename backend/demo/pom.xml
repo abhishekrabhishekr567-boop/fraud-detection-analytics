@@ -5,10 +5,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- ✅ Project Details -->
     <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>fraud-detection-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <name>fraud-detection-system</name>
+    <description>Spring Boot Project</description>
 
+    <!-- ✅ Spring Boot Parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -16,56 +20,38 @@
         <relativePath/>
     </parent>
 
+    <!-- ✅ Java Version -->
     <properties>
         <java.version>17</java.version>
     </properties>
 
+    <!-- ✅ Dependencies -->
     <dependencies>
 
-        <!-- Web -->
+        <!-- Spring Boot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Security -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <!-- JPA -->
+        <!-- Spring Boot JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- H2 Database -->
+        <!-- MySQL Driver -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- JWT (OLD VERSION) -->
+        <!-- Lombok (optional but useful) -->
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
-        </dependency>
-
-        <!-- JAXB FIX (IMPORTANT FOR JAVA 17) -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-
-        <!-- Activation FIX -->
-        <dependency>
-            <groupId>com.sun.activation</groupId>
-            <artifactId>jakarta.activation</artifactId>
-            <version>2.0.1</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Validation -->
@@ -74,7 +60,7 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Test -->
+        <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -83,9 +69,9 @@
 
     </dependencies>
 
+    <!-- ✅ REQUIRED FIX (PLUGIN) -->
     <build>
         <plugins>
-            <!-- Spring Boot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

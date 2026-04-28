@@ -1,34 +1,17 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Transaction;
-import com.example.demo.repository.TransactionRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class TransactionService {
+public interface TransactionService {
 
-    @Autowired
-    private TransactionRepository repository;
+    List<Transaction> getAllTransactions();
 
-    // ✅ GET all transactions
-    public List<Transaction> getAllTransactions() {
-        return repository.findAll();
-    }
+    Transaction getTransactionById(Long id);
 
-    // ✅ PROCESS + SAVE transaction (Fraud Logic)
-    public Transaction processTransaction(Transaction txn) {
+    Transaction createTransaction(Transaction transaction);
 
-        // 🔥 FRAUD RULE
-        if (txn.getAmount() > 10000) {
-            txn.setFlagged(true);
-        } else {
-            txn.setFlagged(false);
-        }
+    Transaction updateTransaction(Long id, Transaction transaction);
 
-        return repository.save(txn);
-    }
+    void deleteTransaction(Long id);
 }
